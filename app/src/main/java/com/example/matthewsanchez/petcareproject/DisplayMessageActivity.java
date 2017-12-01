@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.example.matthewsanchez.petcareproject.ui.MainActivity;
+
 public class DisplayMessageActivity extends AppCompatActivity {
 
     @Override
