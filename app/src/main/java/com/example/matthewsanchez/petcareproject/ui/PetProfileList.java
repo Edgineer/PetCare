@@ -16,6 +16,7 @@ import com.example.matthewsanchez.petcareproject.api.model.PetDoc;
 import com.example.matthewsanchez.petcareproject.api.model.UserDoc;
 import com.example.matthewsanchez.petcareproject.api.service.PetClient;
 import com.example.matthewsanchez.petcareproject.api.ServiceGenerator;
+import com.example.matthewsanchez.petcareproject.api.service.UserClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +31,9 @@ public class PetProfileList extends AppCompatActivity {
 
     public PetClient client_p;
     public Call<PetDoc> call_p;
-    public PetDoc somePet;
+    PetDoc somePet;
+    UserDoc someUser;
+    String[] petPro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,78 +41,177 @@ public class PetProfileList extends AppCompatActivity {
         setContentView(R.layout.activity_pet_profile_list);
 
         Intent intent = getIntent();
-        UserDoc someUser = (UserDoc)intent.getSerializableExtra("userObject");
+        someUser = (UserDoc)intent.getSerializableExtra("userObject");
 
         List<String> listOfPetIDs = someUser.getPetIds();
         String[] petIds = new String[listOfPetIDs.size()];
-        int i = 0;
-        while( ! listOfPetIDs.isEmpty() ) {
-            String element = listOfPetIDs.get(0);
-            petIds[i] = element;
-            i++;
-            listOfPetIDs = listOfPetIDs.subList(1, listOfPetIDs.size());
+        for(int i = 0; i < listOfPetIDs.size(); i++) {
+            petIds[i] = listOfPetIDs.get(i);
         }
 
-        // make retrofit object
-        /*Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://serene-retreat-67526.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-
-        String[] petNames = new String[listOfPetIDs.size()];
-        // Make request to get pet name *associated* with pet id
-        client_p = ServiceGenerator.createService(PetClient.class);
-        for(int j = 0; j < someUser.getPetIds().size(); j++){
-            call_p = client_p.petById(someUser.getPetIds().get(j));
-            final int k = j;
-            try {
-                somePet = call_p.execute().body();
-                petNames[k] = somePet.getName();
-            } catch (IOException exception) {
-                Log.d("TAG", "Problem executing");
-            }
-            /*call_p.enqueue(new Callback<PetDoc>() {
-                @Override
-                public void onResponse(Call<PetDoc> call_p, Response<PetDoc> response) {
-                    if (response.isSuccessful()) {
-                        somePet = response.body();
-                        //petNames[k] = somePet.getName();
-                        Log.d("TAG", "PET NAME IS: " + somePet.getName());
-                        Log.d("TAG", "PET ID IS: " + somePet.getObjectId());
-                    } else {
-                        Log.d("TAG", "UNSUCCESSFUL, RETURN CODE: " + response.code() + " (Bad petId)");
-                    }
-                }
-                @Override
-                public void onFailure(Call<PetDoc> call_p, Throwable t) {
-                    Toast.makeText(PetProfileList.this, "error :(", Toast.LENGTH_SHORT).show();
-                }
-            });*/
-            /*if (somePet == null)
-                Log.d("TAG", "null pet");
-            else
-                Log.d("TAG", "Your pet has data");
+        List<String> listOfPetNames = someUser.getpetNames();
+        String[] petNames = new String[listOfPetNames.size()];
+        for(int k = 0; k < listOfPetNames.size(); k++) {
+            petNames[k] = listOfPetNames.get(k);
         }
 
-        /*for (int k = 0; k < someUser.getPetIds().size(); k++) {
-           Log.d("TAG", "Pet Id " + petIds[k] + " and Pet Name " + petNames[k]);
-        }*/
+        int sizeOfPetList = listOfPetNames.size();
+        petPro = new String[sizeOfPetList];
+        for (int a = 0; a < sizeOfPetList; a++) {
+            petPro[a] = petNames[a] + "\n" + petIds[a];
+        }
+
+        for(int j = 0; j < someUser.getpetNames().size(); j++){
+            Log.d("TAG", "PET ID IS: " + someUser.getPetIds().get(j));
+            Log.d("TAG", "PET NAME IS: " + listOfPetNames.get(j));
+        }
 
         //String[] foods = {"Bacon", "Ham", "Tuna", "Candy", "Meatball", "Potato"};
-        ListAdapter mattsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, petIds);
+        ListAdapter mattsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, petPro);
         ListView mattsListView = (ListView) findViewById(R.id.mattsListView);
         mattsListView.setAdapter(mattsAdapter);
 
-        /*
+        final Intent taskIntent = new Intent(this, TaskList.class);
+
         mattsListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String food = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(PetProfileList.this, food, Toast.LENGTH_LONG).show();
+
+
+
+                        String onePet = String.valueOf(parent.getItemAtPosition(position));
+                        String lines[] = onePet.split("\\r?\\n");
+                        String petId = lines[1];
+                        //Toast.makeText(PetProfileList.this, lines[1], Toast.LENGTH_LONG).show();
+
+                        // make retrofit object
+                        Retrofit.Builder builder = new Retrofit.Builder()
+                                .baseUrl("https://serene-retreat-67526.herokuapp.com/")
+                                .addConverterFactory(GsonConverterFactory.create());
+                        Retrofit retrofit = builder.build();
+
+                        // Get pet doc to fill up task list activity
+                        PetClient client_p = retrofit.create(PetClient.class);
+                        Call<PetDoc> call_p = client_p.petById(petId);
+                        call_p.enqueue(new Callback<PetDoc>() {
+                            @Override
+                            public void onResponse(Call<PetDoc> call_p, Response<PetDoc> response) {
+                                if (response.isSuccessful()) {
+                                    somePet = response.body();
+                                    Log.d("TAG", "PETNAME IS: " + somePet.getName());
+                                    Log.d("TAG", "PETID IS: " + somePet.getObjectId());
+                                    Log.d("TAG", "TASKS ARE IS" + somePet.getTaskNames());
+
+
+                                    taskIntent.putExtra("petObject", somePet);
+                                    startActivity(taskIntent);
+
+                                } else {
+                                    Log.d("TAG", "UNSUCCESSFUL, RETURN CODE: " + response.code() + " (invalid PetID)");
+                                    Toast.makeText(PetProfileList.this, "Pet does not exist",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<PetDoc> call_p, Throwable t) {
+                                Toast.makeText(PetProfileList.this, "Error. Network connection :(", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                     }
                 }
         );
-        */
+
     }
+
+
+
+
+
+    static final int Pet_REQUEST = 1;
+
+    public void goToCreate(View view) {
+        Intent intent = new Intent(this, createGroup.class);
+        intent.putExtra("userCreateObject", someUser);
+        //startActivity(intent);
+        startActivityForResult(intent, Pet_REQUEST);
+    }
+
+    static final int JOIN_REQUEST = 2;
+
+    public void goToJoin(View view) {
+        Intent intent = new Intent(this, createJoin.class);
+        intent.putExtra("userJoinObject", someUser);
+        startActivityForResult(intent, JOIN_REQUEST);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // Check which request we're responding to
+        if (requestCode == Pet_REQUEST && resultCode == RESULT_OK) {
+
+            Log.d("TAG", "ACTIVITY HAS RETURNED");
+
+            Intent intent = getIntent();
+            someUser = (UserDoc) data.getExtras().getSerializable("key");
+
+                List<String> listOfPetIDs = someUser.getPetIds();
+                String[] petIds = new String[listOfPetIDs.size()];
+                for(int i = 0; i < listOfPetIDs.size(); i++) {
+                    petIds[i] = listOfPetIDs.get(i);
+                }
+
+                List<String> listOfPetNames = someUser.getpetNames();
+                String[] petNames = new String[listOfPetNames.size()];
+                for(int k = 0; k < listOfPetNames.size(); k++) {
+                    petNames[k] = listOfPetNames.get(k);
+                }
+
+                int sizeOfPetList = listOfPetNames.size();
+                String[] petPro = new String[sizeOfPetList];
+                for (int a = 0; a < sizeOfPetList; a++) {
+                    petPro[a] = petNames[a] + "\n" + petIds[a];
+                }
+
+                ListAdapter mattsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, petPro);
+                ListView mattsListView = (ListView) findViewById(R.id.mattsListView);
+                mattsListView.setAdapter(mattsAdapter);
+
+        }
+
+        else if (requestCode == JOIN_REQUEST && resultCode == RESULT_OK) {
+            Log.d("TAG", "JOIN HAS RETURNED");
+
+            Intent intent = getIntent();
+            someUser = (UserDoc) data.getExtras().getSerializable("key2");
+
+
+            List<String> listOfPetIDs = someUser.getPetIds();
+            String[] petIds = new String[listOfPetIDs.size()];
+            for(int i = 0; i < listOfPetIDs.size(); i++) {
+                petIds[i] = listOfPetIDs.get(i);
+            }
+
+            List<String> listOfPetNames = someUser.getpetNames();
+            String[] petNames = new String[listOfPetNames.size()];
+            for(int k = 0; k < listOfPetNames.size(); k++) {
+                petNames[k] = listOfPetNames.get(k);
+            }
+
+            int sizeOfPetList = listOfPetNames.size();
+            String[] petPro = new String[sizeOfPetList];
+            for (int a = 0; a < sizeOfPetList; a++) {
+                petPro[a] = petNames[a] + "\n" + petIds[a];
+            }
+
+            ListAdapter mattsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, petPro);
+            ListView mattsListView = (ListView) findViewById(R.id.mattsListView);
+            mattsListView.setAdapter(mattsAdapter);
+
+        }
+    }
+
+
 }

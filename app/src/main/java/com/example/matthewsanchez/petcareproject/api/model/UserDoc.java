@@ -21,6 +21,9 @@ public class UserDoc implements Serializable {
     @SerializedName("petIds")
     private List<String> petIds;
 
+    @SerializedName("petNames")
+    private List<String> petNames;
+
     public void setObjectId(String ObjectId) { this.ObjectId = ObjectId; }
     public String getObjectId() { return ObjectId; }
 
@@ -36,4 +39,7 @@ public class UserDoc implements Serializable {
 
     public void setPetIds(List<String> petIds) { this.petIds = petIds; }
     public List<String> getPetIds() { return petIds; }
+
+    public void setpetNames(List<String> petNames) { this.petNames = petNames; }
+    public List<String> getpetNames() { return petNames; }
 }

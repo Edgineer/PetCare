@@ -23,11 +23,14 @@ public interface PetClient {
     Call<PetDoc> createTask(@Path("petId") String petId, @Path("text") String task);
 
     @DELETE("/pets/deletetask/{petId}/{taskId}")
-    Call<PetDoc> completeTask(@Path("petId") String petId, @Path("taskId") String taskId);
+    Call<PetDoc> deleteTask(@Path("petId") String petId, @Path("taskId") String taskId);
 
     @POST("/pets/createretask/{petId}/{text}")
     Call<PetDoc> createRetask(@Path("petId") String petId, @Path("text") String task);
 
     @PUT("/pets/deleteretask/{petId}/{retaskId}")
+    Call<PetDoc> deleteRetask(@Path("petId") String petId, @Path("retaskId") String retaskId);
+
+    @PUT("/pets/completeretask/{petId}/{retaskId}")
     Call<PetDoc> completeRetask(@Path("petId") String petId, @Path("retaskId") String retaskId);
 }
