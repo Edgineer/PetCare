@@ -1,4 +1,4 @@
-package com.example.matthewsanchez.petcareproject.ui;
+package com.example.matthewsanchez.petcare.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,20 +13,11 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.matthewsanchez.petcareproject.R;
-import com.example.matthewsanchez.petcareproject.api.model.PetDoc;
-import com.example.matthewsanchez.petcareproject.api.model.RetaskDoc;
-import com.example.matthewsanchez.petcareproject.api.model.UserDoc;
-import com.example.matthewsanchez.petcareproject.api.service.PetClient;
-import com.example.matthewsanchez.petcareproject.api.service.RetaskClient;
+import com.example.matthewsanchez.petcare.R;
+import com.example.matthewsanchez.petcare.api.model.PetDoc;
+import com.example.matthewsanchez.petcare.api.service.PetClient;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
 
 import retrofit2.Call;
 import retrofit2.Callback;

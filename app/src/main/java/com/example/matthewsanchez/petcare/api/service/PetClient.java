@@ -1,8 +1,6 @@
-package com.example.matthewsanchez.petcareproject.api.service;
+package com.example.matthewsanchez.petcare.api.service;
 
-import java.util.List;
-
-import com.example.matthewsanchez.petcareproject.api.model.PetDoc;
+import com.example.matthewsanchez.petcare.api.model.PetDoc;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;

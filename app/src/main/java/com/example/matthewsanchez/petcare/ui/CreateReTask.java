@@ -1,4 +1,4 @@
-package com.example.matthewsanchez.petcareproject.ui;
+package com.example.matthewsanchez.petcare.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.matthewsanchez.petcareproject.R;
-import com.example.matthewsanchez.petcareproject.api.model.PetDoc;
-import com.example.matthewsanchez.petcareproject.api.service.PetClient;
+import com.example.matthewsanchez.petcare.R;
+import com.example.matthewsanchez.petcare.api.model.PetDoc;
+import com.example.matthewsanchez.petcare.api.service.PetClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;

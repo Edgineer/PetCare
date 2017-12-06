@@ -1,4 +1,4 @@
-package com.example.matthewsanchez.petcareproject.ui;
+package com.example.matthewsanchez.petcare.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,9 +13,9 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.matthewsanchez.petcareproject.R;
-import com.example.matthewsanchez.petcareproject.api.model.UserDoc;
-import com.example.matthewsanchez.petcareproject.api.service.UserClient;
+import com.example.matthewsanchez.petcare.R;
+import com.example.matthewsanchez.petcare.api.model.UserDoc;
+import com.example.matthewsanchez.petcare.api.service.UserClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;

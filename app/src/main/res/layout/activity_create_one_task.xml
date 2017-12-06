@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.matthewsanchez.petcareproject.ui.CreateOneTask">
+    tools:context="com.example.matthewsanchez.petcare.ui.CreateOneTask">
 
     <EditText
         android:id="@+id/Reoccuring"
@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="Enter a Single Task"
+        android:hint="Enter a One-Time Task"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/createSingle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="240dp"
         android:onClick="returnToPetProfile2"
-        android:text="Create a Single Task"
+        android:text="Create a One-Time Task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"

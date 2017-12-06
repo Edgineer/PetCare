@@ -1,4 +1,4 @@
-package com.example.matthewsanchez.petcareproject;
+package com.example.matthewsanchez.petcare;
 
 import org.junit.Test;
 

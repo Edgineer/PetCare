@@ -1,11 +1,11 @@
-package com.example.matthewsanchez.petcareproject;
+package com.example.matthewsanchez.petcare;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.TextView;
 
-import com.example.matthewsanchez.petcareproject.ui.MainActivity;
+import com.example.matthewsanchez.petcare.ui.MainActivity;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 

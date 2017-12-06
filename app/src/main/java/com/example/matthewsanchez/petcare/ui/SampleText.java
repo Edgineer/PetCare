@@ -1,11 +1,11 @@
-package com.example.matthewsanchez.petcareproject.ui;
+package com.example.matthewsanchez.petcare.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.matthewsanchez.petcareproject.R;
+import com.example.matthewsanchez.petcare.R;
 
 public class SampleText extends AppCompatActivity {
 

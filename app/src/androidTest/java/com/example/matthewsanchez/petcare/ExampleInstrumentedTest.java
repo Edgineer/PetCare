@@ -1,4 +1,4 @@
-package com.example.matthewsanchez.petcareproject;
+package com.example.matthewsanchez.petcare;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

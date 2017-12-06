@@ -1,4 +1,4 @@
-package com.example.matthewsanchez.petcareproject.api.model;
+package com.example.matthewsanchez.petcare.api.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;

@@ -1,15 +1,11 @@
-package com.example.matthewsanchez.petcareproject.api.service;
+package com.example.matthewsanchez.petcare.api.service;
 
-import java.util.List;
-
-import com.example.matthewsanchez.petcareproject.api.model.UserDoc;
+import com.example.matthewsanchez.petcare.api.model.UserDoc;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Field;
 
 /**
  * Created by MatthewSanchez on 11/30/17.

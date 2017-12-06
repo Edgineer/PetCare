@@ -1,22 +1,27 @@
-package com.example.matthewsanchez.petcareproject.ui;
+package com.example.matthewsanchez.petcare.ui;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.matthewsanchez.petcareproject.R;
-import com.example.matthewsanchez.petcareproject.api.model.PetDoc;
-import com.example.matthewsanchez.petcareproject.api.model.UserDoc;
-import com.example.matthewsanchez.petcareproject.api.service.PetClient;
-import com.example.matthewsanchez.petcareproject.api.ServiceGenerator;
-import com.example.matthewsanchez.petcareproject.api.service.UserClient;
+import com.example.matthewsanchez.petcare.R;
+import com.example.matthewsanchez.petcare.api.model.PetDoc;
+import com.example.matthewsanchez.petcare.api.model.UserDoc;
+import com.example.matthewsanchez.petcare.api.service.PetClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +29,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
 import java.util.List;
 
 public class PetProfileList extends AppCompatActivity {
@@ -35,6 +39,9 @@ public class PetProfileList extends AppCompatActivity {
     UserDoc someUser;
     String[] petPro;
 
+    NotificationCompat.Builder notificationBuilder;
+    private static final int uniqueID = 4567;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,31 @@ public class PetProfileList extends AppCompatActivity {
 
         Intent intent = getIntent();
         someUser = (UserDoc)intent.getSerializableExtra("userObject");
+
+        notificationBuilder = new NotificationCompat.Builder(PetProfileList.this, "channel");
+        notificationBuilder.setAutoCancel(true);
+
+        notificationBuilder.setSmallIcon(android.R.drawable.stat_notify_error)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .setContentTitle("PetCare")
+                .setContentText("Check up on your Pets' daily tasks!")
+                .setTicker("Check up on your Pets' daily tasks!");
+
+        Intent notintent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notintent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(pendingIntent);
+
+        notificationBuilder.setDefaults(
+                Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(PetProfileList.this);
+        notificationManager.notify(1, notificationBuilder.build());
+
+
+        EditText editText3 = (EditText) findViewById(R.id.editText3);
+        editText3.setInputType(InputType.TYPE_NULL);
+
+        //EditText editText2 = (EditText) findViewById(R.id.editText2);
+        //editText2.setInputType(InputType.TYPE_NULL);
 
         List<String> listOfPetIDs = someUser.getPetIds();
         String[] petIds = new String[listOfPetIDs.size()];

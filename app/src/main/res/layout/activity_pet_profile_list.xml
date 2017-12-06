@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.matthewsanchez.petcareproject.ui.PetProfileList"
+    tools:context="com.example.matthewsanchez.petcare.ui.PetProfileList"
     tools:layout_editor_absoluteY="81dp">
 
     <ListView
         android:id="@+id/mattsListView"
-        android:layout_width="411dp"
-        android:layout_height="314dp"></ListView>
+        android:layout_width="425dp"
+        android:layout_height="289dp"
+        app:layout_constraintBottom_toTopOf="@+id/create"
+        app:layout_constraintTop_toBottomOf="@+id/editText3"></ListView>
 
     <Button
         android:id="@+id/create"
@@ -20,7 +22,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="goToCreate"
-        android:text="Create Pet Group"
+        android:text="Create Pet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/join"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,11 +37,26 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:onClick="goToJoin"
-        android:text="Join Pet Group"
+        android:text="Join Pet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/create"
         app:layout_constraintTop_toBottomOf="@+id/mattsListView" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="212dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Your Pets"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toTopOf="@+id/mattsListView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

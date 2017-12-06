@@ -1,9 +1,9 @@
-package com.example.matthewsanchez.petcareproject.api;
+package com.example.matthewsanchez.petcare.api;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import com.example.matthewsanchez.petcareproject.api.service.PetClient;
+
 /**
  * Created by MatthewSanchez on 12/1/17.
  */

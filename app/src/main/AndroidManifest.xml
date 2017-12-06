@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.matthewsanchez.petcareproject">
+    package="com.example.matthewsanchez.petcare">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.example.matthewsanchez.petcare.ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,35 +22,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SignUp"
-            android:parentActivityName=".ui.MainActivity">
+            android:name="com.example.matthewsanchez.petcare.ui.SignUp"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
+                android:value="com.example.matthewsanchez.petcare.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.PetProfileList"
-            android:parentActivityName=".ui.MainActivity">
+            android:name="com.example.matthewsanchez.petcare.ui.PetProfileList"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
+                android:value="com.example.matthewsanchez.petcare.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.SampleText"
-            android:parentActivityName=".ui.SignUp">
+            android:name="com.example.matthewsanchez.petcare.ui.SampleText"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.SignUp">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.SignUp" />
+                android:value="com.example.matthewsanchez.petcare.ui.SignUp" />
         </activity>
         <activity
-            android:name=".ui.createGroup"
-            android:parentActivityName=".ui.SignUp">
+            android:name="com.example.matthewsanchez.petcare.ui.createGroup"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.SignUp">
 
             <!--
             The meta-data tag is required if you support API level 15 and lower
@@ -60,8 +60,8 @@
             -->
         </activity>
         <activity
-            android:name=".ui.createJoin"
-            android:parentActivityName=".ui.SignUp">
+            android:name="com.example.matthewsanchez.petcare.ui.createJoin"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.SignUp">
 
             <!--
             The meta-data tag is required if you support API level 15 and lower
@@ -71,18 +71,18 @@
             -->
         </activity>
         <activity
-            android:name=".ui.TaskList"
-            android:parentActivityName=".ui.SignUp" >
+            android:name="com.example.matthewsanchez.petcare.ui.TaskList"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.SignUp" >
 
         </activity>
         <activity
-            android:name=".ui.CreateReTask"
-            android:parentActivityName=".ui.SignUp" >
+            android:name="com.example.matthewsanchez.petcare.ui.CreateReTask"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.SignUp" >
 
         </activity>
         <activity
-            android:name=".ui.CreateOneTask"
-            android:parentActivityName=".ui.SignUp" >
+            android:name="com.example.matthewsanchez.petcare.ui.CreateOneTask"
+            android:parentActivityName="com.example.matthewsanchez.petcare.ui.SignUp" >
 
         </activity>
     </application>

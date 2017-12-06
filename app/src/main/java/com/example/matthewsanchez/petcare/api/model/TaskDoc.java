@@ -1,9 +1,7 @@
-package com.example.matthewsanchez.petcareproject.api.model;
+package com.example.matthewsanchez.petcare.api.model;
 
 import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 /**
  * Created by MatthewSanchez on 12/3/17.
